@@ -1,0 +1,39 @@
+<html>
+<head>
+	<title>JS Test</title>
+</head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+function triggerAjax(){
+	$.get("text.txt", function(data){console.log(data)});
+}
+
+
+/*snippet for test follow*/
+(function() {
+	var headerVal = "bots";
+	var currentTime = 0;
+
+	setInterval(function(){
+		currentTime += 10000;
+		headerVal = "bots-"+Math.round(currentTime/10000);
+	}, 10000);
+
+    var send = XMLHttpRequest.prototype.send
+
+    XMLHttpRequest.prototype.send = function(data) {
+    	console.log("woahhhh");
+        this.setRequestHeader("x-distil-blocks", headerVal);
+        console.log("woahhhh2");
+        return send.apply(this, arguments);
+    };
+}());
+/*end of test snippet*/
+
+</script>
+<body>
+<input type="button" value="Trigger ajax request" onclick="triggerAjax();" />
+</body>
+</html>
