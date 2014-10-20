@@ -11,7 +11,7 @@ function triggerAjax(){
 }
 
 
-/*snippet for test follow*/
+/*snippet for test follows*/
 (function() {
 	var headerVal = "bots";
 	var currentTime = 0;
@@ -21,14 +21,12 @@ function triggerAjax(){
 		headerVal = "bots-"+Math.round(currentTime/10000);
 	}, 10000);
 
-    var send = XMLHttpRequest.prototype.send
+    	var send = XMLHttpRequest.prototype.send
 
-    XMLHttpRequest.prototype.send = function(data) {
-    	console.log("woahhhh");
-        this.setRequestHeader("x-distil-blocks", headerVal);
-        console.log("woahhhh2");
-        return send.apply(this, arguments);
-    };
+    	XMLHttpRequest.prototype.send = function(data) {
+		this.setRequestHeader("x-distil-blocks", headerVal);
+		return send.apply(this, arguments);
+	};
 }());
 /*end of test snippet*/
 
